@@ -45,12 +45,16 @@ section.game {
     align-items: center;
 }
 
-div.color-board {
+div.board {
     background: rgba(0, 0, 0, .35);
-    width: 60vw;
-    height: 40vh;
+    width: 64vw;
+    height: 48vh;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     color: red;
+    border-radius: 8px;
 }
 
 .header {
@@ -59,3 +63,24 @@ div.color-board {
     background: rgba(0, 0, 0, .35);
     color: white;
 }
+
+.color-square {
+    height: 90px;
+    width: 50px;
+    flex-basis: 25%;
+    margin: 15px;
+    border-radius: 10px;
+    transition: all .2s;
+}
+
+.color-square.hover {
+    transform: scale(1.07);
+}
+
+.square1 { background: rgb(55, 66, 150);}
+.square2 { background: rgb(16, 211, 244);}
+.square3 { background: rgb(247, 98, 138);}
+.square4 { background: rgb(13, 234, 47);}
+.square5 { background: rgb(8, 20, 167);}
+.square6 { background: rgb(229, 220, 10);}
+
