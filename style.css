@@ -4,12 +4,14 @@
 }*/
 
 :root {
-    --primary: rgba(0, 0, 0, .1);
-    --secondary: rgba(137, 40, 234, 0.36);
+    --background: rgba(255, 255, 255, .85);
+    --primary: rgba(21, 109, 198, 0.79);
+    --secondary: rgba(5, 112, 221, 0.79);
 }
 
 html {
     box-sizing: border-box;
+    color: white;
 }
 
 *, *:before, *:after {
@@ -34,8 +36,7 @@ nav {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    background: var(--secondary);
-    color: white;
+    background: var(--primary);
 }
 
 ul#difficulties {
@@ -49,7 +50,6 @@ ul#difficulties > * {
 }
 
 ul#difficulties > *:hover {
-    color: var(--base-color);
     text-decoration: underline var(--primary);
     cursor: pointer;
 }
@@ -58,24 +58,39 @@ ul#difficulties > *:hover {
 /*--------------------------*/
 /* Buttons / Text           */
 /*--------------------------*/
-.header {
+.box {
     padding: 10px;
     border-radius: 10px;
-    background: var(--secondary);
-    color: white;
+    background: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
 }
 
 .answerRGB {
-    margin-bottom: 0;
+    margin-top: 50px;
+    margin-bottom: 30px ;
 }
 
-.header2 {
-    margin-top: 5px;
-    font-size: 15px;
+.container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.guesses {
+    margin-right: 30px;
+    font-size: 20px;
 }
 
 .play-again {
+    margin-left: 30px;
+    font-size: 20px;
+    transition: all .2s;
+}
+
+.play-again:hover {
+    cursor: pointer;
     background: var(--secondary);
+    transform: scale(1.03);
 }
 
 
@@ -89,7 +104,8 @@ section.game {
 }
 
 div.board {
-    background: rgba(0, 0, 0, .35);
+    background: var(--background);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, .1);
     width: 64vw;
     height: 48vh;
     display: flex;
@@ -107,6 +123,9 @@ div.board {
     margin: 15px;
     border-radius: 10px;
     transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .color-square.hover {
