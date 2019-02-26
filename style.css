@@ -50,7 +50,7 @@ ul#difficulties > * {
 }
 
 ul#difficulties > *:hover {
-    text-decoration: underline var(--primary);
+    text-decoration: underline #FFF;
     cursor: pointer;
 }
 

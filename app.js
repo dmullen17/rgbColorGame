@@ -1,7 +1,8 @@
 /* TO DO */
 // Store difficulty in localStorage - use this to update numberOfGuesses 
 // Make animation on guessing correctly 
-// Keep stats in localStorage 
+// Keep stats in localStorage - win, losses, guess %percentage
+// After you lose it could set a timeOut to reset the Game - need some way to control this if the player hits reset
 
 
 /* Select DOM elements and define variables */
@@ -13,6 +14,7 @@ const guesses = document.querySelector('.guesses');
 let numberOfGuesses = 2;
 let answerSquare;
 let answer; 
+
 
 /* Define functions */ 
 function randomColor() {
@@ -26,7 +28,7 @@ function randomColor() {
 function resetGame() {
     // Remove any previous style
     if (answerSquare) {
-        answerSquare.innerText = '';
+        answerSquare.textContent = '';
         answerSquare.style.transform = 'scale(1.0)';
     }
 
@@ -43,10 +45,20 @@ function resetGame() {
     answerSquare = colorSquares[index]; // used for displaying the correct square if you lose the game
     
     // Update text 
-    answerRGB.innerText = answer.toUpperCase();
+    answerRGB.textContent = answer.toUpperCase();
     
     // Update numberOfGuesses
-    numberOfGuesses = 2;
+    const localGuesses = window.localStorage.getItem('guesses');
+    numberOfGuesses = localGuesses ? localGuesses : 2;
+    guesses.textContent = `${numberOfGuesses} ${numberOfGuesses > 1 ? 'guesses' : 'guess'} remaining`;
+    
+    // Set difficulty style based on numberOfGuesses
+    const selectedDifficulty = document.querySelector(`li[data-guesses='${numberOfGuesses}']`);
+    selectedDifficulty.style.textDecoration = 'underline #FFF';
+    
+    // Testing that highlighted Text has something to do with the color 
+    //colorSquares.forEach(color => color.style.background = 'yellow');
+    // wasn't related to the color
 }
 
 function checkGuess() {
@@ -57,17 +69,18 @@ function checkGuess() {
     // win game 
     if (guess === answer) {
         console.log('YOU WIN!!!');
+        numberOfGuesses = 0;
         return;
     }
     
     // incorrect guess
     numberOfGuesses --; 
-    guesses.innerText = `${numberOfGuesses} guess remaining`;
+    guesses.textContent = `${numberOfGuesses} guess remaining`;
     if (numberOfGuesses === 0) {
         // Show correct answer
         answerSquare.style.transform = 'scale(1.2)';
         answerSquare.style.color = rgbColorOffset(answer, 255);
-        answerSquare.innerText = 'Try Again!';
+        answerSquare.textContent = 'Try Again!';
     }
 }
 
@@ -88,7 +101,12 @@ function removeHoverSquare() {
 
 function setDifficulty(e) {
     if (e.target.dataset.guesses) {
-        numberOfGuesses = parseInt(e.target.dataset.guesses);
+        window.localStorage.setItem('guesses', e.target.dataset.guesses);
+        // Remove underline styling from all children
+        difficulties.querySelectorAll('li').forEach(li => li.style.textDecoration = '');
+        // Add underline styling to target
+        e.target.style.textDecoration = 'underline #FFF';
+        resetGame();
     }
 }
 
