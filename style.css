@@ -1,8 +1,3 @@
-/*:root {
-    --primary: #f796f7;
-    --secondary: #ea76ea;
-}*/
-
 :root {
     --background: rgba(255, 255, 255, .85);
     --primary: rgba(21, 109, 198, 0.79);
@@ -61,7 +56,7 @@ ul#difficulties > *:hover {
 
 
 /*--------------------------*/
-/* Buttons / Text           */
+/* Buttons / Text Boxes     */
 /*--------------------------*/
 .box {
     padding: 10px;
@@ -127,7 +122,8 @@ div.board {
     flex-basis: 25%;
     margin: 15px;
     border-radius: 10px;
-    transition: all .2s;
+    transition: transform .2s,
+                background .5s;
     display: flex;
     align-items: center;
     justify-content: center;
