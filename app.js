@@ -1,8 +1,8 @@
 /* TO DO */
-// Store difficulty in localStorage - use this to update numberOfGuesses 
 // Make animation on guessing correctly 
 // Keep stats in localStorage - win, losses, guess %percentage
 // After you lose it could set a timeOut to reset the Game - need some way to control this if the player hits reset
+// remove textContent highlighting itself when it populates 
 
 
 /* Select DOM elements and define variables */
@@ -14,6 +14,15 @@ const guesses = document.querySelector('.guesses');
 let numberOfGuesses = 2;
 let answerSquare;
 let answer; 
+const stats = {
+    'correct': 0,
+    'incorrect': 0,
+    'wins': 0,
+    'losses': 0
+}
+const wins = document.querySelector('#wins');
+const losses = document.querySelector('#losses');
+const percentage = document.querySelector('#percentage');
 
 
 /* Define functions */ 
@@ -64,24 +73,32 @@ function resetGame() {
 function checkGuess() {
     if (numberOfGuesses === 0) return;
     const guess = this.dataset.color;
-    console.log(guess);
+    //console.log(guess);
     
     // win game 
     if (guess === answer) {
+        stats.correct ++;
+        stats.wins ++;
+        updateStats();
         console.log('YOU WIN!!!');
         numberOfGuesses = 0;
         return;
     }
     
     // incorrect guess
-    numberOfGuesses --; 
-    guesses.textContent = `${numberOfGuesses} guess remaining`;
+    numberOfGuesses --;
+    guesses.textContent = `${numberOfGuesses} ${numberOfGuesses > 1 ? 'guesses' : 'guess'} remaining`;
+    stats.incorrect ++;
     if (numberOfGuesses === 0) {
+        stats.losses ++;
         // Show correct answer
         answerSquare.style.transform = 'scale(1.2)';
         answerSquare.style.color = rgbColorOffset(answer, 255);
         answerSquare.textContent = 'Try Again!';
     }
+    
+    // update stats
+    updateStats();
 }
 
 function rgbColorOffset(rgbString, offset) {
@@ -109,6 +126,18 @@ function setDifficulty(e) {
         resetGame();
     }
 }
+
+function updateStats() {
+    wins.textContent = `Wins: ${stats.wins}`;
+    losses.textContent = `Losses: ${stats.losses}`;
+    percentage.textContent = `Guess Percentage: ${Math.round(stats.correct / (stats.correct + stats.incorrect)*100)}%`;
+}
+
+// Didn't end up storing stats in localStorage - created an object instead 
+/*function incrementLocalStorageItem(item) {
+    const value = parseInt(localStorage.getItem(item)) + 1;
+    localStorage.setItem(item, JSON.stringify(value));
+}*/
 
 /* Set up Event Listeners */
 window.addEventListener('load', resetGame);

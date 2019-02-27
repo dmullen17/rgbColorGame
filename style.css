@@ -39,14 +39,19 @@ nav {
     background: var(--primary);
 }
 
-ul#difficulties {
+ul {
     margin: 0;
     list-style-type: none;
     display: flex;
+    border-left: 1px solid white;
 }
 
 ul#difficulties > * {
     padding: 0 15px
+}
+
+ul#stats > * {
+    padding: 0 10px;
 }
 
 ul#difficulties > *:hover {
