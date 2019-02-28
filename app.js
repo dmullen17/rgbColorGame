@@ -33,7 +33,7 @@ function resetGame() {
     // Remove any previous style
     if (answerSquare) {
         answerSquare.textContent = '';
-        answerSquare.style.transform = 'scale(1.0)';
+        answerSquare.style.transform = '';
     }
 
     // Reset the colors on each square 
