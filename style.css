@@ -18,7 +18,7 @@ body {
     height: 100vh;
     width: 100vw;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 3.5vh;
     background: url(denise-johnson-463885-unsplash.jpg);
     background-size: cover;
     background-position: center;
@@ -28,7 +28,7 @@ body {
 /* Nav Bar                  */
 /*--------------------------*/
 nav {
-    padding: 10px 20px;
+    padding: 1.5vh 2vh;
     display: flex;
     justify-content: space-between;
     background: var(--primary);
@@ -42,11 +42,11 @@ ul {
 }
 
 ul#difficulties > * {
-    padding: 0 15px
+    padding: 0 2vh;
 }
 
 ul#stats > * {
-    padding: 0 10px;
+    padding: 0 1.5vh;
 }
 
 ul#difficulties > *:hover {
@@ -106,8 +106,8 @@ section.game {
 div.board {
     background: var(--background);
     box-shadow: 0 0 0 3px rgba(0, 0, 0, .1);
-    width: 64vw;
-    height: 48vh;
+    width: 40vw;
+    height: 50vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -117,8 +117,8 @@ div.board {
 }
 
 .color-square {
-    height: 90px;
-    width: 50px;
+    height: 36%;
+    width: 15%;
     flex-basis: 25%;
     margin: 15px;
     border-radius: 10px;
@@ -127,6 +127,7 @@ div.board {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
 }
 
 .color-square.hover {
